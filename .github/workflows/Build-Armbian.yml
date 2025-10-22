@@ -17,7 +17,7 @@ on:
           - 'jp-tvbox'
           - 'nanopi-r3s'
           - 'onecloud'
-          - 'station-m2'
+          - 'luckfox-lyra-zero-w'
       BRANCH:
         description: 'Kernel branch'
         default: 'current'
@@ -181,7 +181,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           body: |
             ### Armbian Image Information
             - Release: `${{ inputs.RELEASE }}`
@@ -226,7 +226,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           body: |
             ### Armbian Deb Packages
             - Usage: After extraction, install the packages (e.g. `dpkg -i *.deb`)
@@ -268,7 +268,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           body: |
             ### Armbian Kernel Packages for ${{ env.LINUX_FAMILY }}
             - Usage: After extraction, install the packages (e.g. `dpkg -i *.deb`)
@@ -293,7 +293,7 @@ jobs:
           allowUpdates: true
           removeArtifacts: false
           replacesArtifacts: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           body: |
             ### Armbian Kernel Packages for ${{ env.LINUX_FAMILY }}
             - Usage: After extraction, install the packages (e.g. `dpkg -i *.deb`)
@@ -308,4 +308,4 @@ jobs:
           releases_keep_latest: 10
           delete_workflows: true
           workflows_keep_day: 3
-          gh_token: ${{ secrets.GITHUB_TOKEN }}
+          gh_token: ${{ secrets.GH_TOKEN }}
