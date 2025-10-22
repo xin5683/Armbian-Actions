@@ -138,13 +138,11 @@ setup_repositories() {
   MIRRORS[CN]="https://download.lierfang.com"
   MIRRORS[JP]="https://jp.mirrors.lierfang.com"
   MIRRORS[DE]="https://de.mirrors.lierfang.com"
-  MIRRORS[NL]="https://apt.dedi.zone"
   MIRRORS[DEFAULT]="https://mirrors.apqa.cn"
   case "${COUNTRY}" in
     CN) PRIMARY="${MIRRORS[CN]}"; REGION="China" ;;
     JP) PRIMARY="${MIRRORS[JP]}"; REGION="Japan" ;;
     DE) PRIMARY="${MIRRORS[DE]}"; REGION="Germany" ;;
-    NL) PRIMARY="${MIRRORS[NL]}"; REGION="Netherlands" ;;
     UNKNOWN|*) PRIMARY="${MIRRORS[DEFAULT]}"; REGION="Cloudflare" ;;
   esac
   echo -e "${INFO} 检测到地区: \033[95m${COUNTRY}\033[0m → 首选源: \033[95m${REGION} (${PRIMARY})\033[0m"
@@ -166,7 +164,7 @@ setup_repositories() {
     fi
     if [[ -z "${MIRROR}" ]]; then
       echo -e "${INFO} 尝试备用源..."
-      for SRC in "${MIRRORS[CN]}" "${MIRRORS[JP]}" "${MIRRORS[DE]}" "${MIRRORS[NL]}"; do
+      for SRC in "${MIRRORS[CN]}" "${MIRRORS[JP]}" "${MIRRORS[DE]}"; do
         [[ "${SRC}" == "${PRIMARY}" ]] && continue
         if curl -fsI -m 3 "${SRC}/pxcloud/" >/dev/null 2>&1; then
           MIRROR="${SRC}"
@@ -174,7 +172,6 @@ setup_repositories() {
             "${MIRRORS[CN]}") REGION="China" ;;
             "${MIRRORS[JP]}") REGION="Japan" ;;
             "${MIRRORS[DE]}") REGION="Germany" ;;
-            "${MIRRORS[NL]}") REGION="Netherlands" ;;
           esac
           echo -e "${INFO} 找到可用备用源 → 使用: \033[95m${REGION} (${MIRROR})\033[0m"
           break
